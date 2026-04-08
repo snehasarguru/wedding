@@ -6,26 +6,28 @@
 
 <title>Pranesh ❤️ Sneha Wedding</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
+  background: #fffaf5;
   scroll-behavior: smooth;
-  background: #fff;
 }
 
 /* HERO */
 .hero {
   height: 100vh;
-  background: url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e') center/cover;
+  background: linear-gradient(rgba(90,0,0,0.6), rgba(90,0,0,0.6)),
+  url('https://images.unsplash.com/photo-1519741497674-611481863552');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
-  text-align: center;
 }
 
 .hero h1 {
@@ -33,13 +35,16 @@ body {
   font-size: 3em;
 }
 
-.hero button {
-  padding: 12px 25px;
-  border: none;
-  background: #fff;
-  color: black;
-  border-radius: 20px;
+.hero p {
+  font-size: 1.2em;
+}
+
+.btn {
   margin-top: 20px;
+  padding: 12px 25px;
+  background: gold;
+  border: none;
+  border-radius: 25px;
 }
 
 /* SECTION */
@@ -48,32 +53,52 @@ body {
   text-align: center;
 }
 
-/* CARDS */
+/* CARD */
 .card {
-  background: #fff5f5;
+  background: white;
+  margin: 20px auto;
   padding: 20px;
-  margin: 15px;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 /* GALLERY */
 .gallery img {
   width: 90%;
-  margin: 10px;
   border-radius: 15px;
+  margin: 10px;
 }
 
 /* BUTTON */
 .button {
   display: inline-block;
-  padding: 10px 20px;
-  background: #e91e63;
+  padding: 12px 25px;
+  background: #8b0000;
   color: white;
-  border-radius: 20px;
+  border-radius: 25px;
   text-decoration: none;
   margin-top: 10px;
 }
+
+/* COUNTDOWN */
+#countdown {
+  font-size: 1.3em;
+  margin-top: 10px;
+}
+
+/* ANIMATION */
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 1s;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 </style>
 </head>
 
@@ -88,19 +113,18 @@ body {
 <div class="hero">
   <h1>Pranesh ❤️ Sneha</h1>
   <p>May 25, 2026</p>
-  <button onclick="document.getElementById('details').scrollIntoView()">
-    View Invitation ↓
-  </button>
+  <div id="countdown"></div>
+  <button class="btn" onclick="scrollDown()">View Invitation</button>
 </div>
 
 <!-- STORY -->
-<div class="section">
+<div class="section fade">
   <h2>Our Story 💕</h2>
-  <p>Two souls, one journey, forever begins here.</p>
+  <p>Two hearts unite in love and tradition 🪔</p>
 </div>
 
 <!-- EVENTS -->
-<div class="section" id="details">
+<div class="section fade">
   <h2>Wedding Events</h2>
 
   <div class="card">
@@ -120,29 +144,29 @@ body {
 </div>
 
 <!-- GALLERY -->
-<div class="section">
+<div class="section fade">
   <h2>Gallery 📸</h2>
   <div class="gallery">
-    <img src="https://images.unsplash.com/photo-1519741497674-611481863552">
     <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486">
+    <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e">
   </div>
 </div>
 
 <!-- VENUE -->
-<div class="section">
+<div class="section fade">
   <h2>Venue 📍</h2>
   <p>PVK Marriage Hall, Dindigul</p>
 
   <a class="button" href="https://www.google.com/maps/search/PVK+Marriage+Hall+Dindigul">
-    Open Map
+    View Location
   </a>
 </div>
 
 <!-- RSVP -->
-<div class="section">
+<div class="section fade">
   <h2>RSVP 💌</h2>
   <a class="button" href="https://wa.me/91XXXXXXXXXX">
-    Confirm on WhatsApp
+    Confirm via WhatsApp
   </a>
 </div>
 
@@ -151,5 +175,39 @@ body {
   <p>With love ❤️ Pranesh & Sneha</p>
 </div>
 
+<!-- SCRIPT -->
+<script>
+function scrollDown() {
+  window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+}
+
+// COUNTDOWN
+var weddingDate = new Date("May 25, 2026 06:00:00").getTime();
+
+setInterval(function() {
+  var now = new Date().getTime();
+  var d = weddingDate - now;
+
+  var days = Math.floor(d/(1000*60*60*24));
+  var hrs = Math.floor((d%(1000*60*60*24))/(1000*60*60));
+  var min = Math.floor((d%(1000*60*60))/(1000*60));
+
+  document.getElementById("countdown").innerHTML =
+    days + " days " + hrs + " hrs " + min + " mins";
+}, 1000);
+
+// SCROLL ANIMATION
+const faders = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+  faders.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if(top < window.innerHeight - 50){
+      el.classList.add('show');
+    }
+  });
+});
+</script>
+
 </body>
-</html>
+    </html>
