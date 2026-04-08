@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pranesh ❤️ Sneha</title>
+<title>Pranesh ❤️ Sneha Wedding</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins&display=swap" rel="stylesheet">
 
@@ -17,7 +17,7 @@ body {
   overflow-x: hidden;
 }
 
-/* FULLSCREEN SECTIONS */
+/* SECTION */
 .section {
   height: 100vh;
   display: flex;
@@ -25,102 +25,189 @@ body {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  opacity: 0;
-  transform: scale(1.1);
-  transition: 1s ease;
 }
 
-.section.show {
+/* TEMPLE BACKGROUND */
+.temple {
+  background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+  url('https://images.unsplash.com/photo-1605649487212-47bdab064df7') center/cover;
+}
+
+/* DOOR */
+.door-container {
+  display: flex;
+  width: 220px;
+  height: 320px;
+  perspective: 1000px;
+}
+
+.door {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(#5a2d0c,#2b1405);
+  transition: transform 1.5s ease;
+}
+
+.left { transform-origin: left; }
+.right { transform-origin: right; }
+
+.open .left {
+  transform: rotateY(-90deg);
+}
+.open .right {
+  transform: rotateY(90deg);
+}
+
+/* GANESH */
+.ganesh {
+  font-size: 70px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: 1.5s;
+}
+.ganesh.show {
   opacity: 1;
   transform: scale(1);
 }
 
-/* BACKGROUNDS */
-.bg1 { background: linear-gradient(#000000aa,#000000aa),
- url('https://images.unsplash.com/photo-1519741497674-611481863552') center/cover; }
-
-.bg2 { background: linear-gradient(#000000aa,#000000aa),
- url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e') center/cover; }
-
-.bg3 { background: linear-gradient(#000000aa,#000000aa),
- url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486') center/cover; }
-
-/* TEXT */
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.8em;
-  animation: fadeUp 2s ease;
+/* GLOW */
+.glow {
+  color: gold;
+  text-shadow: 0 0 10px gold, 0 0 20px gold;
 }
 
-p {
-  font-size: 1.2em;
-  animation: fadeUp 2.5s ease;
+/* CARD */
+.card {
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 15px;
+  margin: 10px;
 }
 
-/* BUTTON */
-.btn {
-  margin-top: 20px;
-  padding: 12px 25px;
-  background: gold;
-  border-radius: 25px;
-  color: black;
-  text-decoration: none;
+/* FINAL LOGO */
+.logo {
+  font-size: 60px;
+  color: gold;
+  animation: pulse 2s infinite;
 }
 
-/* ANIMATION */
-@keyframes fadeUp {
-  from {opacity:0; transform: translateY(40px);}
-  to {opacity:1; transform: translateY(0);}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* FLOWERS */
+.flower {
+  position: fixed;
+  top: -50px;
+  font-size: 20px;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  to { transform: translateY(110vh); }
 }
 </style>
 </head>
 
 <body>
 
-<!-- MUSIC -->
+<!-- AUDIO -->
+<audio id="bell">
+  <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3">
+</audio>
+
 <audio autoplay loop>
   <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
 </audio>
 
-<!-- SCREEN 1 -->
-<div class="section bg1">
-  <h1>You're Invited 💌</h1>
-  <p>To celebrate love & togetherness</p>
+<!-- TEMPLE -->
+<div class="section temple">
+  <h1 class="glow">Welcome 💌</h1>
+  <p>Scroll to enter the divine union</p>
 </div>
 
-<!-- SCREEN 2 -->
-<div class="section bg2">
-  <h1>Pranesh ❤️ Sneha</h1>
-  <p>May 25, 2026</p>
+<!-- DOOR -->
+<div class="section">
+  <div class="door-container" id="door">
+    <div class="door left"></div>
+    <div class="door right"></div>
+  </div>
 </div>
 
-<!-- SCREEN 3 -->
-<div class="section bg3">
+<!-- GANESH -->
+<div class="section">
+  <div class="ganesh glow" id="ganesh">🐘</div>
+  <p>Blessings of Lord Ganesh</p>
+</div>
+
+<!-- COUPLE -->
+<div class="section">
+  <h1 class="glow">Pranesh ❤️ Sneha</h1>
+  <div class="card">
+    <p>Son of Mr. & Mrs. ______</p>
+    <p>Daughter of Mr. & Mrs. ______</p>
+  </div>
+  <p>Request the honor of your presence 💕</p>
+</div>
+
+<!-- WEDDING -->
+<div class="section">
   <h1>Wedding</h1>
-  <p>6:00 AM</p>
+  <p>May 25, 2026 – 6:00 AM</p>
 </div>
 
-<!-- SCREEN 4 -->
-<div class="section bg2">
-  <h1>Venue</h1>
+<!-- RECEPTION -->
+<div class="section">
+  <h1>Reception</h1>
+  <p>May 24, 2026 – 7:00 PM</p>
+</div>
+
+<!-- VENUE -->
+<div class="section">
+  <h1>Venue 📍</h1>
   <p>PVK Marriage Hall, Dindigul</p>
-  <a class="btn" href="https://www.google.com/maps/search/PVK+Marriage+Hall+Dindigul">View Map</a>
+  <a href="https://www.google.com/maps/search/PVK+Marriage+Hall+Dindigul" style="color:gold">
+    View Map
+  </a>
+</div>
+
+<!-- FINAL -->
+<div class="section">
+  <div class="logo">P ❤️ S</div>
+  <p>Forever Begins 💍</p>
 </div>
 
 <script>
-// AUTO SCROLL LIKE VIDEO
-let sections = document.querySelectorAll('.section');
-let index = 0;
+// SCROLL EVENTS
+const door = document.getElementById("door");
+const ganesh = document.getElementById("ganesh");
+const bell = document.getElementById("bell");
 
-function showNext() {
-  sections.forEach(s => s.classList.remove('show'));
-  sections[index].classList.add('show');
-  index = (index + 1) % sections.length;
-}
+window.addEventListener("scroll", () => {
+  let s = window.scrollY;
 
-showNext();
-setInterval(showNext, 4000);
+  if(s > 300){
+    door.classList.add("open");
+    bell.play();
+  }
+
+  if(s > 700){
+    ganesh.classList.add("show");
+  }
+});
+
+// FLOWERS
+setInterval(()=>{
+ let f=document.createElement("div");
+ f.className="flower";
+ f.innerHTML="🌸";
+ f.style.left=Math.random()*100+"vw";
+ f.style.animationDuration=(3+Math.random()*5)+"s";
+ document.body.appendChild(f);
+ setTimeout(()=>f.remove(),8000);
+},400);
 </script>
 
 </body>
-</html>
+    </html>
